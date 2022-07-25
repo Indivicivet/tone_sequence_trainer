@@ -1,16 +1,10 @@
-var context = new AudioContext()
-var o
 
-var beeping = false
-
-document.getElementById("trainer").onclick = function() {
-	if (beeping) {
-		o.stop()
-		beeping = false
-	} else {
-		o = context.createOscillator()
-		o.connect(context.destination)
-		o.start()
-		beeping = true
-	}
+function play_seq() {
+	var context = new AudioContext()
+	var o = context.createOscillator()
+	o.connect(context.destination)
+	o.start(0)
+	o.stop(0.5)
 }
+
+document.getElementById("begin").onclick = play_seq
