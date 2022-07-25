@@ -17,6 +17,8 @@ var typing_marker_idx = 0
 
 var num_tones_box = document.getElementById("num_tones")
 
+var seq
+
 var vocalize_duration = 0.3
 var pause_duration = 0.1
 
@@ -68,15 +70,20 @@ function playingMarker(i) {
 }
 
 
-function choose_and_play_seq() {
+function generateSequence() {
 	// get a list of random tone vals ("keys")
 	var tone_vals = Object.keys(tones)
 	var tone_seq = []
 	for (i = 0; i < markers.length; i++) {
 		tone_seq.push(tone_vals[Math.floor(Math.random() * tone_vals.length)])
 	}
+	return tone_seq
+}
+
+
+function playCurrentSequence() {
 	play_tone_seq(
-		...tone_seq.map(t => tones[t])
+		...seq.map(t => tones[t])
 	)
 	// todo :: urgh, it's gonna be kinda a pain to keep this
 	// in sync with the tone playing, isn't it?
@@ -111,6 +118,12 @@ function choose_and_play_seq() {
 		setTimeout(unplayingAllMarkers, t * 1000)
 		t += pause_duration
 	}
+}
+
+
+function begin() {
+	seq = generateSequence()
+	playCurrentSequence()
 }
 
 
@@ -170,7 +183,7 @@ function set_num_tones(e) {
 
 
 // gameplay
-document.getElementById("begin").onclick = choose_and_play_seq
+document.getElementById("begin").onclick = begin
 document.addEventListener("keydown", keydown);
 
 // settings
