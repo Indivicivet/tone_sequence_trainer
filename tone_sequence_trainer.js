@@ -212,8 +212,6 @@ function keydown(e) {
 	if (typing_marker_idx >= markers.length) {
 		return
 	}
-	
-	markers[typing_marker_idx].classList.add("typetarget")
 	markers[typing_marker_idx].textContent = e.key
 	moveTypeMarkerRight()
 	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
