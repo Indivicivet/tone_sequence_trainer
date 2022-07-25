@@ -125,6 +125,7 @@ function set_num_tones(e) {
 		// todo bettr
 		console.log("15 is max")
 		val = 15
+		e["target"].innerText = val
 	}
 	console.log(val)
 	createMarkers(val)
