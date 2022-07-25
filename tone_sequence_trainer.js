@@ -136,4 +136,4 @@ document.getElementById("begin").onclick = choose_and_play_seq
 // settings
 document.getElementById("num_tones").oninput = set_num_tones
 
-createMarkers(5)
+createMarkers(parseInt(document.getElementById("num_tones").innerText))
