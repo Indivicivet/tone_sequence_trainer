@@ -127,7 +127,10 @@ function keypress(e) {
 		console.log("typed in tones setting` box")
 		return
 	}
-	// todo out of bounds/complete
+	if (typing_marker_idx >= markers.length) {
+		// todo out of bounds/complete
+		return
+	}
 	markers[typing_marker_idx].textContent = e.key
 	typing_marker_idx++
 }
