@@ -167,21 +167,23 @@ function markTones() {
 }
 
 
+function setTypeMarkerIdx(idx) {
+	markers[typing_marker_idx].classList.remove("typetarget")
+	typing_marker_idx = idx
+	markers[typing_marker_idx].classList.add("typetarget")
+}
+
+
 function moveTypeMarkerLeft() {
 	if (typing_marker_idx > 0) {
-		markers[typing_marker_idx].classList.remove("typetarget")
-		typing_marker_idx--
-		markers[typing_marker_idx].classList.add("typetarget")
+		setTypeMarkerIdx(typing_marker_idx - 1)
 	}
 }
 
 
 function moveTypeMarkerRight() {
 	if (typing_marker_idx < markers.length - 1) {
-		markers[typing_marker_idx].classList.remove("typetarget")
-		// todo :: this is bugged because we can't delete the last one :(
-		typing_marker_idx++
-		markers[typing_marker_idx].classList.add("typetarget")
+		setTypeMarkerIdx(typing_marker_idx + 1)
 	}
 }
 
