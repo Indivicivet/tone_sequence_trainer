@@ -193,16 +193,13 @@ function keydown(e) {
 		moveTypeMarkerRight()
 		return
 	}
-	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
-		// todo :: ok, backspace and delete/x should work differently
-		// because that's what you expect
-		if (markers[typing_marker_idx].textContent = "") {
-			moveTypeMarkerLeft()
-			markers[typing_marker_idx].textContent = ""
-		} else {
-			markers[typing_marker_idx].textContent = ""	
-			moveTypeMarkerLeft()
-		}
+	if (e.key == "Backspace") {
+		moveTypeMarkerLeft()
+		markers[typing_marker_idx].textContent = ""
+		return
+	}
+	if (e.key == "x" || e.key == "Delete") {
+		markers[typing_marker_idx].textContent = ""
 		return
 	}
 	if (!(e.key in tones)) {
