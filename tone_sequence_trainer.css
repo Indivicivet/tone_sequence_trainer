@@ -53,6 +53,18 @@ body {
 	background-color: #888;
 }
 
+.marker.correct {
+	background-color: #484;
+}
+
+.marker.incorrect {
+	background-color: #844;
+}
+
+.marker.missing {
+	background-color: #222;
+}
+
 #settings_zone {
 	padding: 20px;
 	margin-left: auto;
