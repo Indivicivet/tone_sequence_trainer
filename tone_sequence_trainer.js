@@ -23,6 +23,8 @@ var vocalize_duration = 0.3
 var pause_duration = 0.1
 
 
+// todo :: consistent camelCase for functions?
+// sry I don't know JS :D
 function play_tone_seq(...tones) {
 	var context = new AudioContext()
 	var o = context.createOscillator()
