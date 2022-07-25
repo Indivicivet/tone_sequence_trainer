@@ -6,6 +6,7 @@ body {
 }
 
 #trainer {
+	text-align: center;
 	padding: 20px;
 	width: 800px;
 	margin: auto;
@@ -13,7 +14,6 @@ body {
 }
 
 #trainer_game {
-	text-align: center;
 }
 
 #begin {
