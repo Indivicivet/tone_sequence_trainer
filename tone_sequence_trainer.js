@@ -158,6 +158,14 @@ function markTones() {
 
 
 function keydown(e) {
+	if (e.key == "r") {
+		repeat()
+		return
+	}
+	if (e.key == "n") {
+		begin()
+		return
+	}
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
 		if (typing_marker_idx > 0) {
 			typing_marker_idx--
