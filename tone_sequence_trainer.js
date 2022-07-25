@@ -86,10 +86,10 @@ function playingMarker(i) {
 
 function generateSequence() {
 	// get a list of random tone vals ("keys")
-	var tone_vals = Object.keys(tones)
+	var tone_keys = Object.keys(tones)
 	var tone_seq = []
 	for (i = 0; i < markers.length; i++) {
-		tone_seq.push(tone_vals[Math.floor(Math.random() * tone_vals.length)])
+		tone_seq.push(tone_keys[Math.floor(Math.random() * tone_keys.length)])
 	}
 	return tone_seq
 }
