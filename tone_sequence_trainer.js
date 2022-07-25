@@ -157,6 +157,25 @@ function markTones() {
 }
 
 
+function moveTypeMarkerLeft() {
+	if (typing_marker_idx > 0) {
+		markers[typing_marker_idx].classList.remove("typetarget")
+		typing_marker_idx--
+		markers[typing_marker_idx].classList.add("typetarget")
+	}
+}
+
+
+function moveTypeMarkerRight() {
+	if (typing_marker_idx < markers.length - 1) {
+		markers[typing_marker_idx].classList.remove("typetarget")
+		// todo :: this is bugged because we can't delete the last one :(
+		typing_marker_idx++
+		markers[typing_marker_idx].classList.add("typetarget")
+	}
+}
+
+
 function keydown(e) {
 	if (e.key == "r") {
 		repeat()
@@ -166,12 +185,23 @@ function keydown(e) {
 		begin()
 		return
 	}
+	if (e.key == "ArrowLeft") {
+		moveTypeMarkerLeft()
+		return
+	}
+	if (e.key == "ArrowRight") {
+		moveTypeMarkerRight()
+		return
+	}
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
-		if (typing_marker_idx > 0) {
-			markers[typing_marker_idx].classList.remove("typetarget")
-			typing_marker_idx--
+		// todo :: ok, backspace and delete/x should work differently
+		// because that's what you expect
+		if (markers[typing_marker_idx].textContent = "") {
+			moveTypeMarkerLeft()
 			markers[typing_marker_idx].textContent = ""
-			markers[typing_marker_idx].classList.add("typetarget")
+		} else {
+			markers[typing_marker_idx].textContent = ""	
+			moveTypeMarkerLeft()
 		}
 		return
 	}
@@ -188,12 +218,7 @@ function keydown(e) {
 	
 	markers[typing_marker_idx].classList.add("typetarget")
 	markers[typing_marker_idx].textContent = e.key
-	if (typing_marker_idx < markers.length - 1) {
-		markers[typing_marker_idx].classList.remove("typetarget")
-		// todo :: this is bugged because we can't delete the last one :(
-		typing_marker_idx++
-		markers[typing_marker_idx].classList.add("typetarget")
-	}
+	moveTypeMarkerRight()
 	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
 		markTones()
 	}
