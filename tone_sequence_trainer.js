@@ -212,6 +212,8 @@ function keydown(e) {
 	if (typing_marker_idx >= markers.length) {
 		return
 	}
+	// todo :: maybe still a bug with typing markers and going in/out of
+	// the settings box
 	markers[typing_marker_idx].textContent = e.key
 	moveTypeMarkerRight()
 	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
