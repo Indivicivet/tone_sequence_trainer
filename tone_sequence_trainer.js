@@ -17,6 +17,8 @@ var typing_marker_idx = 0
 
 var num_tones_box = document.getElementById("num_tones")
 
+var mark_on_completion = true  // todo :: setting
+
 var seq
 
 var vocalize_duration = 0.3
@@ -138,6 +140,23 @@ function repeat() {
 }
 
 
+function markTones() {
+	for (i = 0; i < markers.length; i++) {
+		c = markers[i].classList
+		c.remove("correct")
+		c.remove("incorrect")
+		c.remove("missing")
+		if (markers[i].innerText == seq[i]) {
+			c.add("correct")
+		} else if (markers[i].innerText == "") {
+			c.add("missing")
+		} else {
+			c.add("incorrect")
+		}
+	}
+}
+
+
 function keydown(e) {
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
 		if (typing_marker_idx > 0) {
@@ -154,11 +173,13 @@ function keydown(e) {
 		return
 	}
 	if (typing_marker_idx >= markers.length) {
-		// todo out of bounds/complete
 		return
 	}
 	markers[typing_marker_idx].textContent = e.key
 	typing_marker_idx++
+	if (typing_marker_idx == markers.length && mark_on_completion) {
+		markTones()
+	}
 }
 
 
