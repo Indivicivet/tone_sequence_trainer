@@ -210,6 +210,10 @@ function keydown(e) {
 		begin()
 		return
 	}
+	if (e.key == "Enter") {
+		markTones()
+		return
+	}
 	if (e.key == "ArrowLeft") {
 		moveTypeMarkerLeft()
 		return
