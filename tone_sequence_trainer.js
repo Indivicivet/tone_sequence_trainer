@@ -168,8 +168,10 @@ function keydown(e) {
 	}
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
 		if (typing_marker_idx > 0) {
+			markers[typing_marker_idx].classList.remove("typetarget")
 			typing_marker_idx--
 			markers[typing_marker_idx].textContent = ""
+			markers[typing_marker_idx].classList.add("typetarget")
 		}
 		return
 	}
@@ -183,9 +185,16 @@ function keydown(e) {
 	if (typing_marker_idx >= markers.length) {
 		return
 	}
+	
+	markers[typing_marker_idx].classList.add("typetarget")
 	markers[typing_marker_idx].textContent = e.key
-	typing_marker_idx++
-	if (typing_marker_idx == markers.length && mark_on_completion) {
+	if (typing_marker_idx < markers.length - 1) {
+		markers[typing_marker_idx].classList.remove("typetarget")
+		// todo :: this is bugged because we can't delete the last one :(
+		typing_marker_idx++
+		markers[typing_marker_idx].classList.add("typetarget")
+	}
+	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
 		markTones()
 	}
 }
@@ -199,6 +208,9 @@ function createMarkers(n) {
 	for (i = 0; i < n; i++) {
 		var marker = document.createElement("div")
 		marker.setAttribute("class", "marker")
+		if (i == 0) {
+			marker.classList.add("typetarget")
+		}
 		marker_zone.appendChild(marker)
 	}
 }
