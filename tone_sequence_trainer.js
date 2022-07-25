@@ -50,12 +50,14 @@ function play_tone_seq(...tones) {
 
 
 function choose_and_play_seq() {
+	var tone_seq = [1, 2, 3, 4, 1]
 	play_tone_seq(
-		tones[1],
-		tones[2],
-		tones[3],
-		tones[4],
+		...tone_seq.map(t => tones[t])
 	)
+	// todo :: urgh, it's gonna be kinda a pain to keep this
+	// in sync with the tone playing, isn't it?
+	// consider refactor. (but I want something playable first)
+	
 }
 
 
