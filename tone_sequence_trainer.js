@@ -19,8 +19,8 @@ function play_tone_seq(...tones) {
 	var vocalize_duration = 0.3
 	var pause_duration = 0.1
 	
-	var min_pitch = 220
-	var max_pitch = 440
+	var min_pitch = 240
+	var max_pitch = 300
 	
 	function rel_pitch_to_hz(rel) {
 		return rel * (max_pitch - min_pitch ) + min_pitch
