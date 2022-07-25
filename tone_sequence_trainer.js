@@ -11,13 +11,22 @@ var tones = {
 // todo :: no tone
 
 
+var tone_display_sets = {
+	"numerical": {1: 1, 2: 2, 3: 3, 4: 4},
+	"ma_simplified": {1: "妈", 2: "麻", 3: "马", 4: "骂"},
+}
+
 // num markers is definitive! :)
 var markers = document.getElementsByClassName("marker")
 var typing_marker_idx = 0
 
+var entered_seq = []
+
 var num_tones_box = document.getElementById("num_tones")
 
+// todo :: FUTURE SETTINGS BIN
 var mark_on_completion = true  // todo :: setting
+var display_set = "ma_simplified"  // todo :: setting
 
 var seq
 
@@ -146,9 +155,9 @@ function markTones() {
 		c.remove("correct")
 		c.remove("incorrect")
 		c.remove("missing")
-		if (markers[i].innerText == seq[i]) {
+		if (entered_seq[i] == seq[i]) {
 			c.add("correct")
-		} else if (markers[i].innerText == "") {
+		} else if (entered_seq[i] == "") {
 			c.add("missing")
 		} else {
 			c.add("incorrect")
@@ -176,6 +185,12 @@ function moveTypeMarkerRight() {
 }
 
 
+function enterValue(val) {
+	markers[typing_marker_idx].textContent = tone_display_sets[display_set][val]
+	entered_seq[typing_marker_idx] = val
+}
+
+
 function keydown(e) {
 	if (e.key == "r") {
 		repeat()
@@ -195,11 +210,11 @@ function keydown(e) {
 	}
 	if (e.key == "Backspace") {
 		moveTypeMarkerLeft()
-		markers[typing_marker_idx].textContent = ""
+		enterValue("")
 		return
 	}
 	if (e.key == "x" || e.key == "Delete") {
-		markers[typing_marker_idx].textContent = ""
+		enterValue("")
 		return
 	}
 	if (!(e.key in tones)) {
@@ -214,7 +229,7 @@ function keydown(e) {
 	}
 	// todo :: maybe still a bug with typing markers and going in/out of
 	// the settings box
-	markers[typing_marker_idx].textContent = e.key
+	enterValue(e.key)
 	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
 		markTones()
 	}
