@@ -80,11 +80,18 @@ function choose_and_play_seq() {
 	for (i = 0; i < markers.length; i++) {
 		// todo :: do I actually have to do this...?
 		var f = [
-			function(){ playingMarker(0) },
-			function(){ playingMarker(1) },
-			function(){ playingMarker(2) },
-			function(){ playingMarker(3) },
-			function(){ playingMarker(4) },
+			() => playingMarker(0),
+			() => playingMarker(1),
+			() => playingMarker(2),
+			() => playingMarker(3),
+			() => playingMarker(4),
+			() => playingMarker(5),
+			() => playingMarker(6),
+			() => playingMarker(7),
+			() => playingMarker(8),
+			() => playingMarker(9),
+			() => playingMarker(10),
+			() => playingMarker(11),
 		]
 		setTimeout(f[i], t * 1000)
 		t += vocalize_duration
