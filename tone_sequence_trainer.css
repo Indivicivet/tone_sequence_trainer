@@ -42,6 +42,7 @@ body {
 
 .marker {
 	display: inline-block;
+	overflow: hidden;
 	padding: 20px;
 	margin: 20px;
 	width: 60px;
