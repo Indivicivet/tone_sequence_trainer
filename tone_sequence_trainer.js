@@ -79,6 +79,7 @@ function choose_and_play_seq() {
 	t = 0
 	for (i = 0; i < markers.length; i++) {
 		// todo :: do I actually have to do this...?
+		// todo :: really should work this out :))
 		var f = [
 			() => playingMarker(0),
 			() => playingMarker(1),
@@ -92,6 +93,11 @@ function choose_and_play_seq() {
 			() => playingMarker(9),
 			() => playingMarker(10),
 			() => playingMarker(11),
+			() => playingMarker(12),
+			() => playingMarker(13),
+			() => playingMarker(14),
+			() => playingMarker(15),
+			() => playingMarker(16),
 		]
 		setTimeout(f[i], t * 1000)
 		t += vocalize_duration
