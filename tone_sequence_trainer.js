@@ -20,7 +20,8 @@ var tone_display_sets = {
 var markers = document.getElementsByClassName("marker")
 var typing_marker_idx = 0
 
-var entered_seq = []
+// todo :: more sensible maybe
+var entered_seq = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 
 var num_tones_box = document.getElementById("num_tones")
 
