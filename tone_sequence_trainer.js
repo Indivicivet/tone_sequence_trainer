@@ -127,6 +127,15 @@ function begin() {
 }
 
 
+function repeat() {
+	if (seq == undefined) {
+		begin()
+	} else {
+		playCurrentSequence()
+	}
+}
+
+
 function keydown(e) {
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
 		if (typing_marker_idx > 0) {
@@ -184,6 +193,7 @@ function set_num_tones(e) {
 
 // gameplay
 document.getElementById("begin").onclick = begin
+document.getElementById("repeat").onclick = repeat
 document.addEventListener("keydown", keydown);
 
 // settings
