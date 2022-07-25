@@ -13,6 +13,9 @@ var tones = {
 
 // num markers is definitive! :)
 var markers = document.getElementsByClassName("marker")
+var typing_marker_idx = 0
+
+var num_tones_box = document.getElementById("num_tones")
 
 var vocalize_duration = 0.3
 var pause_duration = 0.1
@@ -111,6 +114,25 @@ function choose_and_play_seq() {
 }
 
 
+function keypress(e) {
+	if (e.key == "x") {
+		typing_marker_idx--
+		markers[typing_marker_idx].textContent = ""
+		return
+	}
+	if (!(e.key in tones)) {
+		return
+	}
+	if (e["target"] == num_tones_box) {
+		console.log("typed in tones setting` box")
+		return
+	}
+	// todo out of bounds/complete
+	markers[typing_marker_idx].textContent = e.key
+	typing_marker_idx++
+}
+
+
 function createMarkers(n) {
 	var marker_zone = document.getElementById("marker_zone")
 	while (marker_zone.firstChild) {
@@ -142,9 +164,11 @@ function set_num_tones(e) {
 }
 
 
+// gameplay
 document.getElementById("begin").onclick = choose_and_play_seq
+document.addEventListener("keypress", keypress);
 
 // settings
-document.getElementById("num_tones").oninput = set_num_tones
+num_tones_box.oninput = set_num_tones
 
-createMarkers(parseInt(document.getElementById("num_tones").innerText))
+createMarkers(parseInt(num_tones_box.innerText))
