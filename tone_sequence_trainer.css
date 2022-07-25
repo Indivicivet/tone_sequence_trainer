@@ -31,6 +31,10 @@ body {
 	background-color: #0B0;
 }
 
+.button.deactivated {
+	background-color: #444
+}
+
 #marker_zone {
 	padding: 5px;
 	margin-left: auto;

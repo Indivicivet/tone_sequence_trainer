@@ -20,8 +20,11 @@ var tone_display_sets = {
 var markers = document.getElementsByClassName("marker")
 var typing_marker_idx = 0
 
+repeat_button = document.getElementById("repeat")
+
 // todo :: more sensible maybe
 var entered_seq = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+var seq = undefined
 
 var num_tones_box = document.getElementById("num_tones")
 
@@ -29,15 +32,13 @@ var num_tones_box = document.getElementById("num_tones")
 var mark_on_completion = true  // todo :: setting
 var display_set = "ma_simplified"  // todo :: setting
 
-var seq
-
 var vocalize_duration = 0.3
 var pause_duration = 0.1
 
 
 // todo :: consistent camelCase for functions?
 // sry I don't know JS :D
-function play_tone_seq(...tones) {
+function playSequenceAudio(...tone_vals) {
 	var context = new AudioContext()
 	var o = context.createOscillator()
 	var gain = context.createGain()
@@ -50,8 +51,8 @@ function play_tone_seq(...tones) {
 	}
 	
 	var t = 0
-	for (j = 0; j < tones.length; j++){
-		pitches = tones[j]
+	for (j = 0; j < tone_vals.length; j++){
+		pitches = tone_vals[j]
 		gain.gain.setValueAtTime(1, t)
 		o.frequency.setValueAtTime(rel_pitch_to_hz(pitches[0][1]), t)
 		for (i = 0; i < pitches.length; i++) {
@@ -62,7 +63,7 @@ function play_tone_seq(...tones) {
 		}
 		t += vocalize_duration
 		gain.gain.setValueAtTime(0, t)
-		if (j < tones.length - 1) {
+		if (j < tone_vals.length - 1) {
 			t += pause_duration
 		}
 	}
@@ -95,14 +96,7 @@ function generateSequence() {
 }
 
 
-function playCurrentSequence() {
-	play_tone_seq(
-		...seq.map(t => tones[t])
-	)
-	// todo :: urgh, it's gonna be kinda a pain to keep this
-	// in sync with the tone playing, isn't it?
-	// consider refactor. (but I want something playable first)
-	
+function playSequenceAnimation() {
 	// duplicated time tracking code :(
 	t = 0
 	for (i = 0; i < markers.length; i++) {
@@ -135,21 +129,34 @@ function playCurrentSequence() {
 }
 
 
+function playCurrentSequence() {
+	tone_vals = seq.map(t => tones[t])
+	playSequenceAudio(...tone_vals)
+	playSequenceAnimation()
+	// todo :: urgh, it's gonna be kinda a pain to keep this
+	// in sync with the tone playing, isn't it?
+	// consider refactor. (but I want something playable first)
+}
+
+
 function begin() {
+	// clear all entered stuff
+	for (i = 0; i < entered_seq.length; i++) {
+		entered_seq[i] = ""
+	}
+	for (i = 0; i < markers.length; i++) {
+		markers[i].textContent = ""
+	}
+	setTypeMarkerIdx(0)
+	
 	seq = generateSequence()
+	repeat_button.classList.remove("deactivated")
 	playCurrentSequence()
 }
 
 
-function repeat() {
-	if (seq == undefined) {
-		begin()
-	} else {
-		playCurrentSequence()
-	}
-}
-
-
+// todo :: also want to call this when changing an existing value
+// after being marked
 function markTones() {
 	for (i = 0; i < markers.length; i++) {
 		c = markers[i].classList
@@ -196,7 +203,7 @@ function enterValue(val) {
 
 function keydown(e) {
 	if (e.key == "r") {
-		repeat()
+		playCurrentSequence()
 		return
 	}
 	if (e.key == "n") {
@@ -256,7 +263,7 @@ function createMarkers(n) {
 }
 
 
-function set_num_tones(e) {
+function setNumTones(e) {
 	var txt = e.target.innerText
 	var val = parseInt(txt)
 	if (isNaN(val)) {
@@ -275,11 +282,13 @@ function set_num_tones(e) {
 
 
 // gameplay
+seq = generateSequence()
+
 document.getElementById("begin").onclick = begin
-document.getElementById("repeat").onclick = repeat
+repeat_button.onclick = playCurrentSequence
 document.addEventListener("keydown", keydown);
 
 // settings
-num_tones_box.oninput = set_num_tones
+num_tones_box.oninput = setNumTones
 
 createMarkers(parseInt(num_tones_box.innerText))
