@@ -31,6 +31,7 @@ body {
 	padding: 5px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 20px;
 	width: fit-content;
 	background-color: #444;
 }
@@ -46,4 +47,21 @@ body {
 
 .marker.playing {
 	background-color: #888;
+}
+
+#settings_zone {
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: fit-content;
+	background-color: #444;
+}
+
+.setting {
+	padding: 5px;
+}
+
+.setting_value {
+	padding: 20px;
+	background-color: #666;
 }
