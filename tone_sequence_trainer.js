@@ -114,8 +114,8 @@ function choose_and_play_seq() {
 }
 
 
-function keypress(e) {
-	if (e.key == "x") {
+function keydown(e) {
+	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
 		typing_marker_idx--
 		markers[typing_marker_idx].textContent = ""
 		return
@@ -169,7 +169,7 @@ function set_num_tones(e) {
 
 // gameplay
 document.getElementById("begin").onclick = choose_and_play_seq
-document.addEventListener("keypress", keypress);
+document.addEventListener("keydown", keydown);
 
 // settings
 num_tones_box.oninput = set_num_tones
