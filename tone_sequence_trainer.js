@@ -11,6 +11,7 @@ var tones = {
 // todo :: no tone
 
 
+// num markers is definitive! :)
 var markers = document.getElementsByClassName("marker")
 
 var vocalize_duration = 0.3
@@ -60,14 +61,17 @@ function unplayingAllMarkers() {
 
 
 function playingMarker(i) {
-	console.log(i)
 	markers[i].classList.add("playing")
 }
 
 
 function choose_and_play_seq() {
-	// todo :: tone seq based on # of markers
-	var tone_seq = [1, 2, 3, 4, 1]
+	// get a list of random tone vals ("keys")
+	var tone_vals = Object.keys(tones)
+	var tone_seq = []
+	for (i = 0; i < markers.length; i++) {
+		tone_seq.push(tone_vals[Math.floor(Math.random() * tone_vals.length)])
+	}
 	play_tone_seq(
 		...tone_seq.map(t => tones[t])
 	)
