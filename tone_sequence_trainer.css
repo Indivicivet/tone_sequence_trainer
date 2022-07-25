@@ -43,3 +43,7 @@ body {
 	height: 60px;
 	background-color: #666;
 }
+
+.marker.playing {
+	background-color: #888;
+}
