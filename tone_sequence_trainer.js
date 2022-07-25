@@ -125,7 +125,7 @@ function createMarkers(n) {
 
 
 function set_num_tones(e) {
-	var txt = e["target"].innerText
+	var txt = e.target.innerText
 	var val = parseInt(txt)
 	if (isNaN(val)) {
 		console.log("not an int")
