@@ -101,4 +101,39 @@ function choose_and_play_seq() {
 }
 
 
+function createMarkers(n) {
+	var marker_zone = document.getElementById("marker_zone")
+	while (marker_zone.firstChild) {
+		marker_zone.removeChild(marker_zone.firstChild)
+	}
+	for (i = 0; i < n; i++) {
+		var marker = document.createElement("div")
+		marker.setAttribute("class", "marker")
+		marker_zone.appendChild(marker)
+	}
+}
+
+
+function set_num_tones(e) {
+	var txt = e["target"].innerText
+	var val = parseInt(txt)
+	if (isNaN(val)) {
+		console.log("not an int")
+		return
+	}
+	if (val > 15) {
+		// todo bettr
+		console.log("15 is max")
+		val = 15
+	}
+	console.log(val)
+	createMarkers(val)
+}
+
+
 document.getElementById("begin").onclick = choose_and_play_seq
+
+// settings
+document.getElementById("num_tones").oninput = set_num_tones
+
+createMarkers(5)
