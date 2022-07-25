@@ -116,8 +116,10 @@ function choose_and_play_seq() {
 
 function keydown(e) {
 	if (e.key == "x" || e.key == "Backspace" || e.key == "Delete") {
-		typing_marker_idx--
-		markers[typing_marker_idx].textContent = ""
+		if (typing_marker_idx > 0) {
+			typing_marker_idx--
+			markers[typing_marker_idx].textContent = ""
+		}
 		return
 	}
 	if (!(e.key in tones)) {
