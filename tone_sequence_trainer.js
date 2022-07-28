@@ -286,8 +286,6 @@ function setNumTones(e) {
 
 
 // gameplay
-seq = generateSequence()
-
 document.getElementById("begin").onclick = begin
 repeat_button.onclick = playCurrentSequence
 document.addEventListener("keydown", keydown);
@@ -296,3 +294,4 @@ document.addEventListener("keydown", keydown);
 num_tones_box.oninput = setNumTones
 
 createMarkers(parseInt(num_tones_box.innerText))
+seq = generateSequence()
