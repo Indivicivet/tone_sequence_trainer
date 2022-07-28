@@ -302,14 +302,37 @@ document.addEventListener("keydown", keydown);
 // settings
 num_tones_box.oninput = setNumTones
 
-document.getElementById("display_numerical").onclick = function() {
-	display_set = "numerical"
-	updateDisplayMarkers()
+// todo :: could do something cleaner here, eh? :)
+display_numerical_button = document.getElementById("display_numerical")
+display_ma_simplified_button = document.getElementById("display_ma_simplified")
+display_type_buttons = [
+	display_numerical_button,
+	display_ma_simplified_button
+]
+
+function setSelectedDisplayTypeButton(b) {
+	for (i = 0; i < display_type_buttons.length; i++) {
+		display_type_buttons[i].classList.remove("selected")
+	}
+	b.classList.add("selected")
 }
-document.getElementById("display_ma_simplified").onclick = function() {
+
+function setDisplayMaSimplified() {
 	display_set = "ma_simplified"
 	updateDisplayMarkers()
+	setSelectedDisplayTypeButton(display_ma_simplified_button)
 }
+
+function setDisplayNumerical() {
+	display_set = "numerical"
+	updateDisplayMarkers()
+	setSelectedDisplayTypeButton(display_numerical_button)
+}
+
+display_numerical_button.onclick = setDisplayNumerical
+display_ma_simplified_button.onclick = setDisplayMaSimplified
+setDisplayMaSimplified()  // default value :)
+// end yucky "which display type" code......................
 
 createMarkers(parseInt(num_tones_box.innerText))
 seq = generateSequence()
