@@ -156,19 +156,28 @@ function changeSequenceToNewSequence() {
 	}
 	setTypeMarkerIdx(0)
 	
+	resetMarkDisplay()
 	seq = generateSequence()
 	playCurrentSequence()
 }
 
 
-// todo :: also want to call this when changing an existing value
-// after being marked
-function markTones() {
+function resetMarkDisplay() {
 	for (i = 0; i < markers.length; i++) {
 		c = markers[i].classList
 		c.remove("correct")
 		c.remove("incorrect")
 		c.remove("missing")
+	}
+}
+
+
+// todo :: also want to call this when changing an existing value
+// after being marked (for mark_on_every_entry=false and mark_on_completion=true)
+function markTones() {
+	resetMarkDisplay()
+	for (i = 0; i < markers.length; i++) {
+		c = markers[i].classList
 		if (entered_seq[i] == seq[i]) {
 			c.add("correct")
 		} else if (entered_seq[i] == "") {
