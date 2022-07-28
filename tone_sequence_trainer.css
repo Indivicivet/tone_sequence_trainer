@@ -75,13 +75,15 @@ body {
 }
 
 /* todo :: do we actually want a "missing" style other than the default? */
+/*
 .marker.missing {
 	background-color: #222;
 }
 
 .marker.missing.playing {
-	background-color: #333;  /* not 444 because thats the generic bg :> */
+	background-color: #333;  /* not 444 because thats the generic bg :> *//*
 }
+*/
 
 .marker.typetarget {
 	box-shadow: inset 0px 0px 0px 3px white;
