@@ -62,12 +62,24 @@ body {
 	background-color: #484;
 }
 
+.marker.correct.playing {
+	background-color: #6A6;
+}
+
 .marker.incorrect {
 	background-color: #844;
 }
 
+.marker.incorrect.playing {
+	background-color: #A66;
+}
+
 .marker.missing {
 	background-color: #222;
+}
+
+.marker.missing.playing {
+	background-color: #333;  /* not 444 because thats the generic bg :> */
 }
 
 .marker.typetarget {
