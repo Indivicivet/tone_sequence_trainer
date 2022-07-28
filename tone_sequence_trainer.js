@@ -135,6 +135,8 @@ function playSequenceAnimation() {
 
 
 function playCurrentSequence() {
+	console.log(seq)  // for cheating ;)
+
 	tone_vals = seq.map(t => tones[t])
 	playSequenceAudio(...tone_vals)
 	playSequenceAnimation()
