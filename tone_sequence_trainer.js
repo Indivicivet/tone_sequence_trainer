@@ -86,6 +86,9 @@ function playingMarker(i) {
 
 
 function generateSequence() {
+	if (markers.length == 0) {
+		console.warn("WARNING: making a sequence with zero markers!")
+	}
 	// get a list of random tone vals ("keys")
 	var tone_keys = Object.keys(tones)
 	var tone_seq = []
