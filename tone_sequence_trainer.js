@@ -24,7 +24,7 @@ repeat_button = document.getElementById("repeat")
 
 // todo :: more sensible maybe
 var entered_seq = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-var seq = undefined
+var seq = undefined  // generated below after markers are created
 
 var num_tones_box = document.getElementById("num_tones")
 
