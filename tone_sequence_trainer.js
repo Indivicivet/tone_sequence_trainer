@@ -31,6 +31,7 @@ var num_tones_box = document.getElementById("num_tones")
 var display_set = "ma_simplified"
 
 // todo :: FUTURE SETTINGS BIN
+var mark_on_every_entry = true  // todo :: setting
 var mark_on_completion = true  // todo :: setting
 
 var vocalize_duration = 0.3
@@ -254,7 +255,10 @@ function keydown(e) {
 	// todo :: maybe still a bug with typing markers and going in/out of
 	// the settings box
 	enterValue(e.key)
-	if (typing_marker_idx == (markers.length - 1) && mark_on_completion) {
+	if (
+		mark_on_every_entry
+		|| (typing_marker_idx == (markers.length - 1) && mark_on_completion)
+	) {
 		markTones()
 	}
 	moveTypeMarkerRight()
