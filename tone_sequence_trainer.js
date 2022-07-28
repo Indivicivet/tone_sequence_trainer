@@ -218,7 +218,7 @@ function keydown(e) {
 		return
 	}
 	if (e.key == "n") {
-		begin()
+		changeSequenceToNewSequence()
 		return
 	}
 	if (e.key == "Enter") {
