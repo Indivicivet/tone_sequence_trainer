@@ -142,7 +142,7 @@ function playCurrentSequence() {
 }
 
 
-function begin() {
+function changeSequenceToNewSequence() {
 	// clear all entered stuff
 	for (i = 0; i < entered_seq.length; i++) {
 		entered_seq[i] = ""
@@ -288,7 +288,7 @@ function setNumTones(e) {
 
 
 // gameplay
-document.getElementById("begin").onclick = begin
+document.getElementById("new_seq").onclick = changeSequenceToNewSequence
 repeat_button.onclick = playCurrentSequence
 document.addEventListener("keydown", keydown);
 
