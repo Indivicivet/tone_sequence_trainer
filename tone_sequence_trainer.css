@@ -92,3 +92,7 @@ body {
 	padding: 10px;
 	background-color: #666;
 }
+
+.setting_value.selected {
+	box-shadow: inset 0px 0px 0px 2px white;
+}
