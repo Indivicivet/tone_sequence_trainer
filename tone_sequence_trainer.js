@@ -197,9 +197,16 @@ function moveTypeMarkerRight() {
 }
 
 
+function updateDisplayMarkers() {
+	for (i = 0; i < markers.length; i++) {
+		markers[i].textContent = tone_display_sets[display_set][entered_seq[i]]
+	}
+}
+
+
 function enterValue(val) {
-	markers[typing_marker_idx].textContent = tone_display_sets[display_set][val]
 	entered_seq[typing_marker_idx] = val
+	updateDisplayMarkers()
 }
 
 
@@ -294,6 +301,15 @@ document.addEventListener("keydown", keydown);
 
 // settings
 num_tones_box.oninput = setNumTones
+
+document.getElementById("display_numerical").onclick = function() {
+	display_set = "numerical"
+	updateDisplayMarkers()
+}
+document.getElementById("display_ma_simplified").onclick = function() {
+	display_set = "ma_simplified"
+	updateDisplayMarkers()
+}
 
 createMarkers(parseInt(num_tones_box.innerText))
 seq = generateSequence()
