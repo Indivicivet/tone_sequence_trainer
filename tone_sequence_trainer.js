@@ -28,9 +28,10 @@ var seq = undefined  // generated below after markers are created
 
 var num_tones_box = document.getElementById("num_tones")
 
+var display_set = "ma_simplified"
+
 // todo :: FUTURE SETTINGS BIN
 var mark_on_completion = true  // todo :: setting
-var display_set = "ma_simplified"  // todo :: setting
 
 var vocalize_duration = 0.3
 var pause_duration = 0.1
