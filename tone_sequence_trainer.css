@@ -74,6 +74,7 @@ body {
 	background-color: #A66;
 }
 
+/* todo :: do we actually want a "missing" style other than the default? */
 .marker.missing {
 	background-color: #222;
 }
