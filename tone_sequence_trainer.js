@@ -153,7 +153,6 @@ function begin() {
 	setTypeMarkerIdx(0)
 	
 	seq = generateSequence()
-	repeat_button.classList.remove("deactivated")
 	playCurrentSequence()
 }
 
